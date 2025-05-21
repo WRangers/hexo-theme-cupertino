@@ -1,36 +1,79 @@
+<!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
+<script src="<%= url_for('/js/no-copy.js') %>"></script>
+
+<style>
+  .top-tip {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #800020;
+    color: #ffffff;
+    text-align: center;
+    padding: 14px 0;
+    font-size: 16px;
+    z-index: 9999;
+    opacity: 0.96;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    transition: top 0.4s, opacity 0.4s;
+  }
+
+  .top-tip.hide {
+    top: -60px;
+    opacity: 0;
+  }
+</style>
+<div id="top-tip" class="top-tip" style="display:none"></div>
+<script>
+  function showTopTip(msg, duration = 2000) {
+    var tip = document.getElementById('top-tip');
+    tip.innerText = msg;
+    tip.style.display = 'block';
+    tip.classList.remove('hide');
+    setTimeout(function () {
+      tip.classList.add('hide');
+      setTimeout(function () {
+        tip.style.display = 'none';
+      }, 400);
+    }, duration);
+  }
+</script>
+
 <footer>
   <div class="inner">
     <div class="links">
       <% for (const group of theme.footer) { %>
-      <div class="group">
-        <h2 class="title"><%- group.group_name %></h2>
-        <% for (const item of group.items) { %>
-        <a href="<%- url_for(item.url) %>" class="item"><%- item.name %></a>
+        <div class="group">
+          <h2 class="title"><%- group.group_name %></h2>
+          <% for (const item of group.items) { %>
+            <a href="<%- url_for(item.url) %>" class="item"><%- item.name %></a>
+            <% } %>
+        </div>
         <% } %>
-      </div>
-      <% } %>
     </div>
-    <span>&copy; <%= date(new Date(), 'YYYY') %> <%= config.author || config.title %><br><%- __('powered_by', '<a href="http://hexo.io/" target="_blank">Hexo</a>') %></span>
+    <span>&copy; <%= date(new Date(), 'YYYY' ) %>
+        <%= config.author || config.title %><br><%-
+            __('powered_by', '<a href="http://hexo.io/" target="_blank">Hexo</a>' ) %></span>
     <% if (theme.footer_extra_description) { %>
-    <br>
-    <span class="footer-extra-description"><%- theme.footer_extra_description %></span>
-    <% } %>
-    <% if (theme.show_color_scheme_toggle) { %>
       <br>
-      <div class="color-scheme-toggle" role="radiogroup" id="theme-color-scheme-toggle">
-        <label>
-          <input type="radio" value="light">
-          <span><%- __('light') %></span>
-        </label>
-        <label>
-          <input type="radio" value="dark">
-          <span><%- __('dark') %></span>
-        </label>
-        <label>
-          <input type="radio" value="auto">
-          <span><%- __('auto') %></span>
-        </label>
-      </div>
-    <% }%>
+      <span class="footer-extra-description"><%- theme.footer_extra_description %></span>
+      <% } %>
+        <% if (theme.show_color_scheme_toggle) { %>
+          <br>
+          <div class="color-scheme-toggle" role="radiogroup" id="theme-color-scheme-toggle">
+            <label>
+              <input type="radio" value="light">
+              <span><%- __('light') %></span>
+            </label>
+            <label>
+              <input type="radio" value="dark">
+              <span><%- __('dark') %></span>
+            </label>
+            <label>
+              <input type="radio" value="auto">
+              <span><%- __('auto') %></span>
+            </label>
+          </div>
+          <% }%>
   </div>
 </footer>
