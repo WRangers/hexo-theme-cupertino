@@ -55,6 +55,10 @@
     letter-spacing: 0.012em;
   }
 
+  #{$content} p {
+    text-align: justify;
+  }
+
   /* only `#{$content} > pre`, do not include <pre /> in <figure /> */
   #{$content} p,
   #{$content} h1,
