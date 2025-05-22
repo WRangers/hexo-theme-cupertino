@@ -28,7 +28,7 @@
     <%- page.content %>
   </div>
 
-  <% if (!page.no_about) { %>
+  <% if (page.about) { %>
   <div class="about">
     <h1><%= __('about_this_post') %></h1>
     <div class="details">
