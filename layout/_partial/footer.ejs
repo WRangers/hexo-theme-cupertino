@@ -55,9 +55,10 @@
       <% }%>
         <span>
           <%= config.description %><br>
-            2020-<%= date(new Date(), 'YYYY' ) %> &copy;
+            2019-<%= date(new Date(), 'YYYY' ) %> &copy;
               <%= config.author || config.title %> | <%-
                   __('powered_by', '<a href="http://hexo.io/" target="_blank">Hexo</a>' ) %>
+                  & <a href="https://github.com/MrWillCom/hexo-theme-cupertino" target="_blank">Cupertino</a>
         </span>
         <% if (theme.footer_extra_description) { %>
           <br>
